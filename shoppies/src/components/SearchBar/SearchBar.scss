@@ -1,3 +1,5 @@
+@import '../../sass/variables.scss';
+
 .form-container {
   padding: 3% 0;
 
@@ -6,6 +8,7 @@
     flex-direction: column;
     width: 77%;
     margin: 0 auto;
+    position: relative;
 
     input {
       border: 1px solid #ddd;
@@ -14,10 +17,33 @@
       height: 40px;
       padding-left: 10px;
       padding-right: 10px;
+      font-size: 16px;
+
+      &:focus {
+        outline: none !important;
+        border: 1.5px solid rgb(118, 157, 228);
+        box-shadow: $generic-box-shadow;
+      }
+    }
+    button {
+      width: 20px;
+      align-self: flex-end;
+      position: absolute;
+      bottom: 34px;
+      right: 20px;
+      border: none;
+      background-color: white;
+      cursor: pointer;
+
+      i {
+        color: rgb(94, 94, 179);
+        font-size: 14px;
+      }
     }
     small {
       color: rgb(116, 116, 116);
       margin-top: 6px;
+      //padding-left: 10px;
     }
   }
 }
