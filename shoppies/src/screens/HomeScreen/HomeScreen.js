@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import SearchBar from '../../components/SearchBar/SearchBar';
+import Movies from '../../components/Movies/Movies';
 
 const movieUrl = "http://www.omdbapi.com"
 const API_KEY = "79526c77"
@@ -38,7 +39,19 @@ const HomeScreen = () => {
 
     return (
         <div className='main-container' >
-            <SearchBar handleSearchChange={handleSearchChange} deleteSearchText={deleteSearchText} searchInput={searchInput} />
+            <SearchBar
+                handleSearchChange={handleSearchChange}
+                deleteSearchText={deleteSearchText}
+                searchInput={searchInput}
+            />
+            <div className='movies-and-nominations' >
+                <div className='movies-and-nominations_movies'>
+                    <Movies movieList={movieList} />
+                </div>
+                <div className='movies-and-nominations_nominations' >
+                    <h2>Nominations</h2>
+                </div>
+            </div>
         </div>
     )
 }
