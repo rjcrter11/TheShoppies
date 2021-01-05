@@ -1,0 +1,13 @@
+@import '../../sass/variables.scss';
+
+.navbar {
+  padding: 2% 1%;
+  border: $generic-border;
+  background-color: $generic-bg;
+
+  h1 {
+    font-size: 40px;
+    font-weight: bold;
+    color: $logo;
+  }
+}
