@@ -5,9 +5,11 @@ const MovieCard = ({ movie }) => {
         <div className='card' >
             <img className='card_poster' src={movie.Poster} alt={`Poster for ${movie.Title}`} />
             <div className='card_body' >
-                <p> <strong className='card_title' > {movie.Title} </strong> </p>
-                <span className='card_movie-year' > {movie.Year} </span>
-                <button>Nominate!</button>
+                <div className='card_body_info' >
+                    <p className='card_body_title' > {movie.Title}  </p>
+                    <span className='card_body_movie-year' > {movie.Year} </span>
+                </div>
+                <button>Nominate! <i className="fas fa-trophy"></i></button>
             </div>
         </div>
     )

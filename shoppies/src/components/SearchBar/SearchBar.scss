@@ -41,8 +41,9 @@
       }
     }
     small {
-      color: rgb(116, 116, 116);
+      color: $small-text;
       margin-top: 6px;
+      font-size: 13px;
     }
   }
 }
