@@ -5,6 +5,9 @@ import axios from 'axios';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Movies from '../../components/Movies/Movies';
 
+import { NominationsContext } from '../../contexts/NominationsContext'
+import Nominations from '../../components/Nominations/Nominations';
+
 const movieUrl = "http://www.omdbapi.com"
 const API_KEY = "79526c77"
 
@@ -12,8 +15,9 @@ const HomeScreen = () => {
 
     const [movieList, setMovieList] = useState([]);
     const [searchInput, setSearchInput] = useState("");
+    const [nominations, setNominations] = useState([]);
 
-    // Search bar functions
+    // SEARCH BAR 
     const handleSearchChange = e => {
         setSearchInput(e.target.value)
     }
@@ -22,14 +26,21 @@ const HomeScreen = () => {
         setSearchInput('')
     }
 
-    // axios call to imdb 
+    // MOVIE LIST 
     const fetchMovies = title => {
         axios.get(`${movieUrl}/?apikey=${API_KEY}&type=movie&s=${title}`)
             .then(res => {
-                console.log(res);
                 setMovieList(res.data.Search);
             })
             .catch(err => console.log(err));
+    }
+
+    // NOMINATIONS
+    const handleNominate = movie => {
+        setNominations([...nominations, movie])
+    }
+    const handleRemoveNomination = id => {
+        setNominations(nominations.filter(nom => nom.imdbID !== id))
     }
 
     useEffect(() => {
@@ -45,12 +56,15 @@ const HomeScreen = () => {
                 searchInput={searchInput}
             />
             <div className='movies-and-nominations' >
-                <div className='movies-and-nominations_movies'>
-                    <Movies movieList={movieList} />
-                </div>
-                <div className='movies-and-nominations_nominations' >
-                    <h2>Nominations</h2>
-                </div>
+                <NominationsContext.Provider value={{ nominations, handleNominate, handleRemoveNomination }}>
+                    <div className='movies-and-nominations_movies'>
+                        <Movies movieList={movieList} />
+                    </div>
+                    <div className='movies-and-nominations_nominations' >
+                        <h2>Nominations</h2>
+                        <Nominations />
+                    </div>
+                </NominationsContext.Provider>
             </div>
         </div>
     )
