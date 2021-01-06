@@ -4,18 +4,21 @@ import axios from 'axios';
 
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Movies from '../../components/Movies/Movies';
-
-import { NominationsContext } from '../../contexts/NominationsContext'
 import Nominations from '../../components/Nominations/Nominations';
+
+import { NominationsContext } from '../../contexts/NominationsContext';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+
 
 const movieUrl = "http://www.omdbapi.com"
 const API_KEY = "79526c77"
 
 const HomeScreen = () => {
 
+    // HOOKS
     const [movieList, setMovieList] = useState([]);
     const [searchInput, setSearchInput] = useState("");
-    const [nominations, setNominations] = useState([]);
+    const [nominations, setNominations] = useLocalStorage("nominations", [])
 
     // SEARCH BAR 
     const handleSearchChange = e => {
@@ -60,9 +63,12 @@ const HomeScreen = () => {
                     <div className='movies-and-nominations_movies'>
                         <Movies movieList={movieList} />
                     </div>
-                    <div className='movies-and-nominations_nominations' >
-                        <h2>Nominations</h2>
-                        <Nominations />
+
+                    <div className='movies-and-nominations_container' >
+                        <h2>Your Nominations ({nominations.length} of 5) </h2>
+                        <div className="movies-and-nominations_nominations">
+                            <Nominations />
+                        </div>
                     </div>
                 </NominationsContext.Provider>
             </div>

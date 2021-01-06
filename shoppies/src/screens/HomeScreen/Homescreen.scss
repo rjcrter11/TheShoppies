@@ -1,21 +1,31 @@
 @import '../../sass/variables.scss';
 .movies-and-nominations {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 0 4%;
   margin: 0 auto;
 
   &_movies {
     width: 70%;
   }
-  &_nominations {
-    width: 25%;
-    border: $generic-border;
-    box-shadow: $generic-box-shadow;
-    height: fit-content;
 
-    h2 {
-      text-align: center;
+  &_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+
+    &_nominations {
+      width: 100%;
+      box-shadow: $generic-box-shadow;
+      height: fit-content;
+
+      h2 {
+        width: 50%;
+        padding: 2% 0 0 0;
+        margin-bottom: 10px auto;
+        border-bottom: 1px solid rgb(199, 199, 199);
+      }
     }
   }
 }
