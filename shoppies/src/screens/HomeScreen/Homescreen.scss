@@ -1,0 +1,21 @@
+@import '../../sass/variables.scss';
+.movies-and-nominations {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4%;
+  margin: 0 auto;
+
+  &_movies {
+    width: 70%;
+  }
+  &_nominations {
+    width: 25%;
+    border: $generic-border;
+    box-shadow: $generic-box-shadow;
+    height: fit-content;
+
+    h2 {
+      text-align: center;
+    }
+  }
+}

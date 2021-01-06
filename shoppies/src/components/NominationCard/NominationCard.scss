@@ -1,0 +1,35 @@
+@import '../../sass/variables.scss';
+
+.nomination-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: $generic-border;
+  padding: 3% 3%;
+  margin-top: 10px;
+
+  img {
+    max-height: 75px;
+    max-width: 100px;
+  }
+
+  &_info {
+    padding: 1% 1%;
+
+    &_title {
+      color: $generic-bg;
+    }
+  }
+
+  button {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    padding: 1% 1%;
+
+    &:hover {
+      border: $generic-border;
+      color: red;
+    }
+  }
+}
