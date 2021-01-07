@@ -37,22 +37,22 @@
     button {
       width: 100%;
       padding: 3% 0;
-      color: $logo;
+      color: rgb(238, 238, 238);
       background-color: $generic-bg;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 16px;
       border: none;
       border-radius: 3px;
       cursor: pointer;
 
       &:hover {
-        color: $generic-bg;
-        background-color: $logo;
+        color: rgb(238, 238, 238);
+        background-color: $shoppify-green;
       }
 
       &:disabled {
         background-color: $small-text;
-        color: yellow;
+        color: white;
       }
     }
   }
