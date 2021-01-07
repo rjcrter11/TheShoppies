@@ -10,8 +10,7 @@ export const fetchMovies = (title, setMovieList, currentPage, setCurrentPage) =>
         .then(res => {
             setMovieList(res.data.Search);
             const result = res.data;
-            result.page = currentPage ? currentPage : setCurrentPage(1)
-            console.log('page', result.page);
+            result.page = currentPage ? currentPage : setCurrentPage(1);
         })
         .catch(err => console.log(err));
 };
@@ -20,7 +19,6 @@ export const fetchNextPage = (title, setValue, currentPage, setCurrentPage) => {
     const page = setCurrentPage(currentPage + 1)
     axios.get(`${movieUrl}/?apikey=${API_KEY}&type=movie&s=${title}&page=${page}`)
         .then(res => {
-            console.log('fetch data', res);
             setValue(res.data.Search);
             const result = res.data;
             result.page = page
@@ -31,7 +29,6 @@ export const fetchLastPage = (title, setValue, currentPage, setCurrentPage) => {
     const page = currentPage > 1 && setCurrentPage(currentPage -= 1)
     axios.get(`${movieUrl}/?apikey=${API_KEY}&type=movie&s=${title}&page=${page}`)
         .then(res => {
-            console.log('fetch data', res);
             setValue(res.data.Search);
             const result = res.data;
             result.page = page;
