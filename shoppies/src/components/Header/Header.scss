@@ -5,9 +5,19 @@
   border: $generic-border;
   background-color: $generic-bg;
 
-  h1 {
-    font-size: 40px;
-    font-weight: bold;
-    color: $logo;
+  &_logo-container {
+    display: flex;
+    align-items: center;
+
+    img {
+      max-height: 150px;
+      max-width: 150px;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-weight: bold;
+      color: white;
+    }
   }
 }

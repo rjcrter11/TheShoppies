@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
 
-import axios from 'axios';
 
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Movies from '../../components/Movies/Movies';
-
-import { NominationsContext } from '../../contexts/NominationsContext'
 import Nominations from '../../components/Nominations/Nominations';
+import Banner from '../../components/Banner/Banner';
 
-const movieUrl = "http://www.omdbapi.com"
-const API_KEY = "79526c77"
+import { NominationsContext } from '../../contexts/NominationsContext';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { fetchMovies } from '../../utils/fetchCalls';
+
+
 
 const HomeScreen = () => {
 
+    // HOOKS
     const [movieList, setMovieList] = useState([]);
     const [searchInput, setSearchInput] = useState("");
-    const [nominations, setNominations] = useState([]);
+    const [nominations, setNominations] = useLocalStorage("nominations", []);
+    const [currentPage, setCurrentPage] = useState(null);
+
 
     // SEARCH BAR 
     const handleSearchChange = e => {
@@ -26,15 +30,6 @@ const HomeScreen = () => {
         setSearchInput('')
     }
 
-    // MOVIE LIST 
-    const fetchMovies = title => {
-        axios.get(`${movieUrl}/?apikey=${API_KEY}&type=movie&s=${title}`)
-            .then(res => {
-                setMovieList(res.data.Search);
-            })
-            .catch(err => console.log(err));
-    }
-
     // NOMINATIONS
     const handleNominate = movie => {
         setNominations([...nominations, movie])
@@ -43,10 +38,18 @@ const HomeScreen = () => {
         setNominations(nominations.filter(nom => nom.imdbID !== id))
     }
 
+    // FETCH MOVIES ON SEARCH AND CHANGE OF PAGE
     useEffect(() => {
-        setMovieList(fetchMovies(searchInput));
+        setMovieList(fetchMovies(searchInput, setMovieList, currentPage, setCurrentPage));
 
-    }, [searchInput])
+    }, [searchInput, currentPage]);
+
+    // RESET PAGE COUNT WHEN CHANGING SEARCH PARAMS
+    useEffect(() => {
+        if (searchInput.length - 1) {
+            setCurrentPage(null)
+        }
+    }, [searchInput]);
 
     return (
         <div className='main-container' >
@@ -58,11 +61,22 @@ const HomeScreen = () => {
             <div className='movies-and-nominations' >
                 <NominationsContext.Provider value={{ nominations, handleNominate, handleRemoveNomination }}>
                     <div className='movies-and-nominations_movies'>
-                        <Movies movieList={movieList} />
+                        {nominations.length >= 5 ? (<Banner />) : (
+                            <Movies
+                                movieList={movieList}
+                                setMovieList={setMovieList}
+                                searchInput={searchInput}
+                                currentPage={currentPage}
+                                setCurrentPage={setCurrentPage}
+                            />
+                        )}
                     </div>
-                    <div className='movies-and-nominations_nominations' >
-                        <h2>Nominations</h2>
-                        <Nominations />
+
+                    <div className='movies-and-nominations_container' >
+                        <h2>Your Nominations ({nominations.length} of 5) </h2>
+                        <div className="movies-and-nominations_nominations">
+                            <Nominations />
+                        </div>
                     </div>
                 </NominationsContext.Provider>
             </div>

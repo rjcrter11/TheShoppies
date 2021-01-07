@@ -7,9 +7,11 @@ const Nominations = () => {
     const { nominations } = useContext(NominationsContext);
 
     return (
-        <div className='nominations' >
+        <div
+            className='nominations'
+        >
             { nominations.map(movie => (
-                <NominationCard key={`${movie.imdbID}-${movie.Title}`} {...movie} />
+                <NominationCard key={`${movie.imdbID}-${movie.Title}`}  {...movie} />
             ))}
         </div>
     )

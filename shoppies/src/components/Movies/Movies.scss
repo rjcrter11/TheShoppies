@@ -1,8 +1,61 @@
-.movie-list {
+@import '../../sass/variables.scss';
+
+.movie-list-container {
+  border: $generic-border;
+  box-shadow: $generic-box-shadow;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: space-around;
-  padding: 1%;
-  width: 100%;
+
+  h3 {
+    align-self: center;
+    justify-self: center;
+    color: $small-text;
+  }
+
+  &_results {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      padding-top: 10px;
+      margin-left: 6%;
+      color: $generic-bg;
+      font-weight: bold;
+      width: 20%;
+    }
+    .movie-list-container_btns {
+      display: flex;
+      justify-content: space-between;
+      width: 12%;
+      margin-right: 6%;
+      padding-top: 10px;
+
+      button {
+        border: none;
+        background-color: white;
+        font-size: 24px;
+        color: $generic-bg;
+
+        &:focus {
+          outline: none;
+        }
+
+        &:hover {
+          color: $shoppify-green;
+        }
+      }
+    }
+  }
+
+  .movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 5% 0 0 0;
+    width: 100%;
+  }
 }
