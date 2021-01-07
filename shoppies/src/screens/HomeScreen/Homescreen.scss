@@ -2,7 +2,7 @@
 .movies-and-nominations {
   display: flex;
   justify-content: space-evenly;
-  padding: 0 4%;
+  padding: 3% 4%;
   margin: 0 auto;
 
   &_movies {
@@ -15,9 +15,10 @@
     align-items: center;
     width: 30%;
     h2 {
-      width: 50%;
+      width: 100%;
       padding: 2% 0 0 0;
-      margin-bottom: 10px auto;
+      margin-bottom: 10px;
+      text-align: center;
       // border-bottom: 1px solid rgb(199, 199, 199);
     }
 
