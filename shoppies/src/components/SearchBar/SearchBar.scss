@@ -29,14 +29,14 @@
       width: 20px;
       align-self: flex-end;
       position: absolute;
-      bottom: 34px;
+      bottom: 30px;
       right: 20px;
       border: none;
       background-color: white;
       cursor: pointer;
 
       i {
-        color: rgb(94, 94, 179);
+        color: $shoppify-green;
         font-size: 14px;
       }
     }
