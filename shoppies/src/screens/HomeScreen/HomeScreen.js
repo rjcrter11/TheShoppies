@@ -5,6 +5,7 @@ import axios from 'axios';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Movies from '../../components/Movies/Movies';
 import Nominations from '../../components/Nominations/Nominations';
+import Banner from '../../components/Banner/Banner';
 
 import { NominationsContext } from '../../contexts/NominationsContext';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
@@ -20,6 +21,7 @@ const HomeScreen = () => {
     const [searchInput, setSearchInput] = useState("");
     const [nominations, setNominations] = useLocalStorage("nominations", [])
 
+
     // SEARCH BAR 
     const handleSearchChange = e => {
         setSearchInput(e.target.value)
@@ -33,6 +35,7 @@ const HomeScreen = () => {
     const fetchMovies = title => {
         axios.get(`${movieUrl}/?apikey=${API_KEY}&type=movie&s=${title}`)
             .then(res => {
+                console.log(res);
                 setMovieList(res.data.Search);
             })
             .catch(err => console.log(err));
@@ -61,7 +64,9 @@ const HomeScreen = () => {
             <div className='movies-and-nominations' >
                 <NominationsContext.Provider value={{ nominations, handleNominate, handleRemoveNomination }}>
                     <div className='movies-and-nominations_movies'>
-                        <Movies movieList={movieList} />
+                        {nominations.length >= 5 ? (<Banner />) : (
+                            <Movies movieList={movieList} searchInput={searchInput} />
+                        )}
                     </div>
 
                     <div className='movies-and-nominations_container' >

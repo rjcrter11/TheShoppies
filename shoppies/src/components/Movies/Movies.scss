@@ -1,8 +1,25 @@
-.movie-list {
+@import '../../sass/variables.scss';
+
+.movie-list-container {
+  border: $generic-border;
+  box-shadow: $generic-box-shadow;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: space-around;
-  padding: 1%;
-  width: 100%;
+
+  h2 {
+    padding-top: 10px;
+    margin-left: 6%;
+    color: $generic-bg;
+    font-weight: bold;
+  }
+
+  .movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 5% 0 0 0;
+    width: 100%;
+  }
 }
