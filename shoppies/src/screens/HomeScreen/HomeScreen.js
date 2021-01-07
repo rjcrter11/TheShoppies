@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import axios from 'axios';
 
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Movies from '../../components/Movies/Movies';
@@ -9,17 +8,17 @@ import Banner from '../../components/Banner/Banner';
 
 import { NominationsContext } from '../../contexts/NominationsContext';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { fetchMovies } from '../../utils/fetchCalls';
 
 
-const movieUrl = "http://www.omdbapi.com"
-const API_KEY = "79526c77"
 
 const HomeScreen = () => {
 
     // HOOKS
     const [movieList, setMovieList] = useState([]);
     const [searchInput, setSearchInput] = useState("");
-    const [nominations, setNominations] = useLocalStorage("nominations", [])
+    const [nominations, setNominations] = useLocalStorage("nominations", []);
+    const [currentPage, setCurrentPage] = useState(null);
 
 
     // SEARCH BAR 
@@ -31,16 +30,6 @@ const HomeScreen = () => {
         setSearchInput('')
     }
 
-    // MOVIE LIST 
-    const fetchMovies = title => {
-        axios.get(`${movieUrl}/?apikey=${API_KEY}&type=movie&s=${title}`)
-            .then(res => {
-                console.log(res);
-                setMovieList(res.data.Search);
-            })
-            .catch(err => console.log(err));
-    }
-
     // NOMINATIONS
     const handleNominate = movie => {
         setNominations([...nominations, movie])
@@ -49,10 +38,18 @@ const HomeScreen = () => {
         setNominations(nominations.filter(nom => nom.imdbID !== id))
     }
 
+    // FETCH MOVIES ON SEARCH AND CHANGE OF PAGE
     useEffect(() => {
-        setMovieList(fetchMovies(searchInput));
+        setMovieList(fetchMovies(searchInput, setMovieList, currentPage, setCurrentPage));
 
-    }, [searchInput])
+    }, [searchInput, currentPage]);
+
+    // RESET PAGE COUNT WHEN CHANGING SEARCH PARAMS
+    useEffect(() => {
+        if (searchInput.length - 1) {
+            setCurrentPage(null)
+        }
+    }, [searchInput]);
 
     return (
         <div className='main-container' >
@@ -65,7 +62,13 @@ const HomeScreen = () => {
                 <NominationsContext.Provider value={{ nominations, handleNominate, handleRemoveNomination }}>
                     <div className='movies-and-nominations_movies'>
                         {nominations.length >= 5 ? (<Banner />) : (
-                            <Movies movieList={movieList} searchInput={searchInput} />
+                            <Movies
+                                movieList={movieList}
+                                setMovieList={setMovieList}
+                                searchInput={searchInput}
+                                currentPage={currentPage}
+                                setCurrentPage={setCurrentPage}
+                            />
                         )}
                     </div>
 

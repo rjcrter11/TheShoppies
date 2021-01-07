@@ -1,15 +1,25 @@
-import React from 'react'
-import MovieCard from '../MovieCard/MovieCard'
+import React from 'react';
 
-const Movies = ({ movieList, searchInput }) => (
+import { fetchNextPage, fetchLastPage } from '../../utils/fetchCalls';
+
+import MovieCard from '../MovieCard/MovieCard';
+
+
+const Movies = ({ movieList, setMovieList, searchInput, currentPage, setCurrentPage }) => (
     <>
         <div className='movie-list-container' >
             {searchInput.length > 0 ? (
                 <div className='movie-list-container_results' >
                     <h2>Results for "{searchInput}"</h2>
                     <div className='movie-list-container_btns'  >
-                        <button><i className="fas fa-arrow-alt-circle-left"></i></button>
-                        <button><i className="fas fa-arrow-alt-circle-right"></i></button>
+                        <button
+                            onClick={() => fetchLastPage(searchInput, setMovieList, currentPage, setCurrentPage)} >
+                            <i className="fas fa-arrow-alt-circle-left"></i>
+                        </button>
+                        <button
+                            onClick={() => fetchNextPage(searchInput, setMovieList, currentPage, setCurrentPage)}>
+                            <i className="fas fa-arrow-alt-circle-right"></i>
+                        </button>
                     </div>
                 </div>
 
