@@ -44,6 +44,8 @@ const HomeScreen = () => {
 
     }, [searchInput, currentPage]);
 
+
+
     // RESET PAGE COUNT WHEN CHANGING SEARCH PARAMS
     useEffect(() => {
         if (searchInput.length - 1) {
