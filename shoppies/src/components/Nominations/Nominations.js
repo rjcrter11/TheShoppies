@@ -15,6 +15,6 @@ const Nominations = () => {
             ))}
         </div>
     )
-}
+};
 
-export default Nominations
+export default Nominations;

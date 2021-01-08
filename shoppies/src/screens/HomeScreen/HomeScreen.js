@@ -22,10 +22,8 @@ const HomeScreen = () => {
     const [currentPage, setCurrentPage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [totalResults, setTotalResults] = useState(null)
-    // console.log('MOVIE LIST: ', movieList);
+    const [totalResults, setTotalResults] = useState(null);
 
-    console.log('TOTAL RESULTS: ', totalResults);
     // SEARCH BAR 
     const handleSearchChange = e => {
         setSearchInput(e.target.value)
@@ -49,19 +47,20 @@ const HomeScreen = () => {
         axios.get(`${movieUrl}/?apikey=${API_KEY}&type=movie&s=${title}&page=${page}`)
             .then(res => {
 
-                if (res.Response === 'False') {
-                    setError(res.Error)
+                if (res.data.Response !== 'True') {
+                    setError(res.data.Error)
+                    console.log(res.data.Error);
                 } else {
                     setMovieList(res.data.Search);
                     const result = res.data;
-                    console.log(result);
+                    console.log('RESULT', result);
                     setTotalResults(result.totalResults)
                     result.page = currentPage === null ? setCurrentPage(1) : setCurrentPage(page)
                 }
                 setIsLoading(false)
             })
-            .catch(({ message }) => {
-                setError(message);
+            .catch(err => {
+                console.log(err);
                 setIsLoading(false);
             });
     }, [currentPage]);
@@ -82,7 +81,6 @@ const HomeScreen = () => {
 
     return (
         <div className='main-container' >
-            { error && (<p>{error}</p>)}
             { nominations.length >= 5 && (<Banner />)}
             <SearchBar
                 handleSearchChange={handleSearchChange}
@@ -98,6 +96,7 @@ const HomeScreen = () => {
                             searchInput={searchInput}
                             currentPage={currentPage}
                             isLoading={isLoading}
+                            error={error}
                             totalResults={totalResults}
                         />
                     </div>

@@ -19,6 +19,6 @@ const NominationCard = (props) => {
             </button>
         </div>
     )
-}
+};
 
-export default NominationCard
+export default NominationCard;

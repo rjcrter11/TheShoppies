@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import { NominationsContext } from '../../contexts/NominationsContext';
 
-const defaultPoster = 'https://via.placeholder.com/200x275/383838/8cb849?text=POSTER+NOT+FOUND'
+const defaultPoster = 'https://via.placeholder.com/200x275/383838/8cb849?text=POSTER+NOT+FOUND';
 
 
 const MovieCard = ({ movie }) => {
@@ -22,6 +22,6 @@ const MovieCard = ({ movie }) => {
             </div>
         </div>
     )
-}
+};
 
-export default MovieCard
+export default MovieCard;

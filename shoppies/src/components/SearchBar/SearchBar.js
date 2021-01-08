@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const SearchBar = ({ handleSearchChange, searchInput, deleteSearchText }) => (
     <div className='form-container' >
@@ -16,6 +16,6 @@ const SearchBar = ({ handleSearchChange, searchInput, deleteSearchText }) => (
             <small>Search for a movie you would like to nominate for the Shoppies!</small>
         </form>
     </div>
-)
+);
 
-export default SearchBar
+export default SearchBar;
