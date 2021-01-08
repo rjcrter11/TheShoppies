@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
+import axios from 'axios';
 
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Movies from '../../components/Movies/Movies';
@@ -8,9 +9,9 @@ import Banner from '../../components/Banner/Banner';
 
 import { NominationsContext } from '../../contexts/NominationsContext';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { fetchMovies } from '../../utils/fetchCalls';
 
-
+const movieUrl = "http://www.omdbapi.com";
+const API_KEY = "79526c77";
 
 const HomeScreen = () => {
 
@@ -19,7 +20,8 @@ const HomeScreen = () => {
     const [searchInput, setSearchInput] = useState("");
     const [nominations, setNominations] = useLocalStorage("nominations", []);
     const [currentPage, setCurrentPage] = useState(null);
-
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     // SEARCH BAR 
     const handleSearchChange = e => {
@@ -38,11 +40,31 @@ const HomeScreen = () => {
         setNominations(nominations.filter(nom => nom.imdbID !== id))
     }
 
-    // FETCH MOVIES ON SEARCH AND CHANGE OF PAGE
-    useEffect(() => {
-        setMovieList(fetchMovies(searchInput, setMovieList, currentPage, setCurrentPage));
+    // FETCH MOVIES
+    const fetchMovies = useCallback((title, page) => {
+        setIsLoading(true)
+        axios.get(`${movieUrl}/?apikey=${API_KEY}&type=movie&s=${title}&page=${page}`)
+            .then(res => {
 
-    }, [searchInput, currentPage]);
+                if (res.Response === 'False') {
+                    setError(res.Error)
+                } else {
+                    setMovieList(res.data.Search);
+                    const result = res.data;
+                    result.page = currentPage === null ? setCurrentPage(1) : setCurrentPage(page)
+                }
+                setIsLoading(false)
+            })
+            .catch(({ message }) => {
+                setError(message);
+                setIsLoading(false);
+            });
+    }, [currentPage]);
+
+    // RERENDER ON SEARCH AND CHANGE OF PAGE
+    useEffect(() => {
+        setMovieList(fetchMovies(searchInput, currentPage));
+    }, [searchInput, fetchMovies, currentPage]);
 
 
 
@@ -55,6 +77,7 @@ const HomeScreen = () => {
 
     return (
         <div className='main-container' >
+            { error && (<p>{error}</p>)}
             <SearchBar
                 handleSearchChange={handleSearchChange}
                 deleteSearchText={deleteSearchText}
@@ -66,10 +89,10 @@ const HomeScreen = () => {
                         {nominations.length >= 5 ? (<Banner />) : (
                             <Movies
                                 movieList={movieList}
-                                setMovieList={setMovieList}
+                                fetchMovies={fetchMovies}
                                 searchInput={searchInput}
                                 currentPage={currentPage}
-                                setCurrentPage={setCurrentPage}
+                                isLoading={isLoading}
                             />
                         )}
                     </div>
