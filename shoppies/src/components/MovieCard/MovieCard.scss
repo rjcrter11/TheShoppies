@@ -4,7 +4,7 @@
   box-shadow: $generic-box-shadow;
   border-radius: 5px;
   width: 18%;
-  margin: 10px 5px 10px 5px;
+  margin: 10px 5px 15px 5px;
   &:hover {
     transform: scale(1.1);
     transition: transform 4s cubic-bezier(0.25, 0.45, 0.45, 0.95);
@@ -42,7 +42,9 @@
       padding: 3% 0;
       color: rgb(238, 238, 238);
       background-color: $generic-bg;
-      font-weight: 600;
+
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
       font-size: 16px;
       border: none;
       border-radius: 3px;
@@ -50,7 +52,7 @@
 
       &:hover {
         color: rgb(238, 238, 238);
-        background-color: $shoppify-green;
+        background-color: darken($shoppify-green, 5%);
       }
 
       &:disabled {

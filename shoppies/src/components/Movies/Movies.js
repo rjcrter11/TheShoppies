@@ -3,7 +3,7 @@ import React from 'react';
 import MovieCard from '../MovieCard/MovieCard';
 import Spinner from '../../components/Spinner/Spinner';
 
-const Movies = ({ movieList, searchInput, currentPage, fetchMovies, isLoading }) => (
+const Movies = ({ movieList, searchInput, currentPage, fetchMovies, isLoading, totalResults }) => (
     <div className='movie-list-container'  >
         {searchInput.length > 0 ? (
             <div className='movie-list-container_results' >
@@ -15,6 +15,7 @@ const Movies = ({ movieList, searchInput, currentPage, fetchMovies, isLoading })
                         <i className="fas fa-arrow-alt-circle-left"></i>
                     </button>
                     <button
+                        disabled={currentPage * 10 > totalResults}
                         onClick={() => fetchMovies(searchInput, currentPage + 1)}>
                         <i className="fas fa-arrow-alt-circle-right"></i>
                     </button>

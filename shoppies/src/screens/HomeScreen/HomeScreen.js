@@ -22,7 +22,10 @@ const HomeScreen = () => {
     const [currentPage, setCurrentPage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [totalResults, setTotalResults] = useState(null)
+    // console.log('MOVIE LIST: ', movieList);
 
+    console.log('TOTAL RESULTS: ', totalResults);
     // SEARCH BAR 
     const handleSearchChange = e => {
         setSearchInput(e.target.value)
@@ -51,6 +54,8 @@ const HomeScreen = () => {
                 } else {
                     setMovieList(res.data.Search);
                     const result = res.data;
+                    console.log(result);
+                    setTotalResults(result.totalResults)
                     result.page = currentPage === null ? setCurrentPage(1) : setCurrentPage(page)
                 }
                 setIsLoading(false)
@@ -93,6 +98,7 @@ const HomeScreen = () => {
                             searchInput={searchInput}
                             currentPage={currentPage}
                             isLoading={isLoading}
+                            totalResults={totalResults}
                         />
                     </div>
 
