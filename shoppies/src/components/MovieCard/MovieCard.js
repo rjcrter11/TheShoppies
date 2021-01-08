@@ -17,8 +17,8 @@ const MovieCard = ({ movie }) => {
                     <span className='card_body_movie-year' > {movie.Year} </span>
                 </div>
                 <button
-                    disabled={match !== undefined}
-                    onClick={() => handleNominate(movie)} >Nominate! <i className="fas fa-trophy"></i></button>
+                    disabled={match !== undefined || nominations.length >= 5}
+                    onClick={() => handleNominate(movie)} >Nominate </button>
             </div>
         </div>
     )

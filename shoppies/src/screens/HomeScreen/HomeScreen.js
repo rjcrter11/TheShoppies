@@ -78,6 +78,7 @@ const HomeScreen = () => {
     return (
         <div className='main-container' >
             { error && (<p>{error}</p>)}
+            { nominations.length >= 5 && (<Banner />)}
             <SearchBar
                 handleSearchChange={handleSearchChange}
                 deleteSearchText={deleteSearchText}
@@ -86,15 +87,13 @@ const HomeScreen = () => {
             <div className='movies-and-nominations' >
                 <NominationsContext.Provider value={{ nominations, handleNominate, handleRemoveNomination }}>
                     <div className='movies-and-nominations_movies'>
-                        {nominations.length >= 5 ? (<Banner />) : (
-                            <Movies
-                                movieList={movieList}
-                                fetchMovies={fetchMovies}
-                                searchInput={searchInput}
-                                currentPage={currentPage}
-                                isLoading={isLoading}
-                            />
-                        )}
+                        <Movies
+                            movieList={movieList}
+                            fetchMovies={fetchMovies}
+                            searchInput={searchInput}
+                            currentPage={currentPage}
+                            isLoading={isLoading}
+                        />
                     </div>
 
                     <div className='movies-and-nominations_container' >

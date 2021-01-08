@@ -1,9 +1,34 @@
 @import '../../sass//variables.scss';
 
 .banner {
+  display: flex;
+  align-items: center;
   width: 100%;
-  height: 60vh;
   margin: 0 auto;
+  padding: 1% 1%;
   border: $generic-border;
   box-shadow: $generic-box-shadow;
+  background-color: $shoppify-green;
+  position: sticky;
+  top: 0;
+
+  &_icon {
+    padding: 1% 1%;
+
+    i {
+      font-size: 30px;
+      color: darken($shoppify-green, 20%);
+    }
+  }
+
+  &_info {
+    h3 {
+      font-size: 18px;
+      color: rgb(44, 44, 44);
+      padding: 1% 0;
+    }
+    p {
+      color: darken($small-text, 20%);
+    }
+  }
 }
