@@ -5,7 +5,6 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const Movies = ({ movieList, searchInput, currentPage, fetchMovies, isLoading }) => (
     <div className='movie-list-container'  >
-        {isLoading && (<Spinner />)}
         {searchInput.length > 0 ? (
             <div className='movie-list-container_results' >
                 <h2>RESULTS FOR "{searchInput.toUpperCase()}"</h2>
@@ -23,6 +22,7 @@ const Movies = ({ movieList, searchInput, currentPage, fetchMovies, isLoading })
             </div>
         ) : <h3>Pick up to 5 movies to nominate!</h3>}
         <div className="movie-list" >
+            {isLoading && (<Spinner />)}
             {movieList && movieList.map(mov => (
                 <MovieCard key={mov.imdbID} movie={mov} />
             ))}

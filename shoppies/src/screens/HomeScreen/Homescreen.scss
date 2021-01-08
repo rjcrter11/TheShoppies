@@ -19,13 +19,13 @@
       padding: 2% 0 0 0;
       margin-bottom: 10px;
       text-align: center;
-      // border-bottom: 1px solid rgb(199, 199, 199);
+      font-size: 20px;
+      font-weight: 500;
     }
 
     .movies-and-nominations_nominations {
-      width: 85%;
+      width: 88%;
       box-shadow: $generic-box-shadow;
-      height: fit-content;
     }
   }
 }
