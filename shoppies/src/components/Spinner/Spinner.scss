@@ -1,0 +1,31 @@
+@import '../../sass/variables.scss';
+
+.spinner-overlay {
+  height: 60vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .spinner-container {
+    display: inline-block;
+    width: 125px;
+    height: 125px;
+    border: 3px solid $shoppify-green;
+    border-radius: 50%;
+    border-top-color: $generic-bg;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+
+    @keyframes spin {
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+    @-webkit-keyframes spin {
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+  }
+}

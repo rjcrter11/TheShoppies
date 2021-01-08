@@ -1,7 +1,7 @@
 @import '../../sass/variables.scss';
 
 .navbar {
-  padding: 2% 1%;
+  padding: 1% 1%;
   border: $generic-border;
   background-color: $generic-bg;
 
@@ -10,8 +10,8 @@
     align-items: center;
 
     img {
-      max-height: 150px;
-      max-width: 150px;
+      max-height: 125px;
+      max-width: 125px;
     }
 
     h1 {

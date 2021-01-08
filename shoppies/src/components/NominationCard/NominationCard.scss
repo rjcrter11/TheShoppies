@@ -28,6 +28,10 @@
     cursor: pointer;
     padding: 2% 2%;
 
+    &:focus {
+      outline: none !important;
+    }
+
     &:hover {
       border: $generic-border;
       color: red;
