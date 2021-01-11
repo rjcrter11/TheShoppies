@@ -1,4 +1,5 @@
 @import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
 
 .movies-and-nominations {
   display: flex;
@@ -28,6 +29,14 @@
       width: 88%;
       box-shadow: $generic-box-shadow;
     }
+
+    @include mq('900px') {
+      display: none;
+    }
+  }
+
+  @include mq('900px') {
+    padding: 1% 0;
   }
 }
 

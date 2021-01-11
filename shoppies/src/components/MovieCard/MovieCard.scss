@@ -1,4 +1,5 @@
 @import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
 .card {
   border: $generic-border;
   box-shadow: $generic-box-shadow;
@@ -12,6 +13,10 @@
   img {
     width: 100%;
     height: 200px;
+
+    @include mq('600px') {
+      height: 250px;
+    }
   }
 
   &_body {
@@ -60,6 +65,14 @@
         color: white;
       }
     }
+  }
+
+  @include mq('1050px') {
+    width: 30%;
+  }
+  @include mq('600px') {
+    width: 80%;
+    margin: 1% auto;
   }
 }
 

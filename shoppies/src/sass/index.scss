@@ -1,6 +1,7 @@
 @import './reset.scss';
-@import '../components/Header/Header.scss';
 @import './variables.scss';
+@import './mixins.scss';
+@import '../components/Header/Header.scss';
 @import '../components/SearchBar/SearchBar.scss';
 @import '../components/Movies/Movies.scss';
 @import '../components/MovieCard/MovieCard.scss';

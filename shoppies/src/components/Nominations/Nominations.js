@@ -20,7 +20,7 @@ const Nominations = () => {
                     unmountOnExit
                     classNames='noms'
                     appear={true}
-                    ref={wrapper}
+                    nodeRef={wrapper}
                     timeout={1000}
                     key={movie.imdbID}
                 >

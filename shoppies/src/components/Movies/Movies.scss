@@ -1,4 +1,5 @@
 @import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
 
 .movie-list-container {
   border: $generic-border;
@@ -27,6 +28,10 @@
       color: $generic-bg;
       font-weight: bold;
       width: 40%;
+
+      @include mq('600px') {
+        width: 80%;
+      }
     }
     .movie-list-container_btns {
       display: flex;
@@ -64,6 +69,21 @@
     justify-content: center;
     padding: 3% 0 0 0;
     width: 100%;
+
+    @include mq('1050px') {
+      justify-content: space-between;
+    }
+  }
+
+  @include mq('1050px') {
+    height: 155vh;
+  }
+
+  @include mq('900px') {
+    width: 100%;
+  }
+  @include mq('600px') {
+    height: fit-content;
   }
 }
 
