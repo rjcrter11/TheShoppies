@@ -4,7 +4,7 @@
 .movies-and-nominations {
   display: flex;
   justify-content: space-evenly;
-  padding: 1% 3%;
+  padding: 1% 1%;
   margin: 0 auto;
 
   &_movies {
@@ -19,7 +19,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30%;
+    width: 40%;
     h2 {
       width: 100%;
       padding: 2% 0 0 0;

@@ -4,7 +4,7 @@
   border: $generic-border;
   box-shadow: $generic-box-shadow;
   border-radius: 5px;
-  width: 18%;
+  width: 20%;
   margin: 10px 5px 15px 5px;
   &:hover {
     transform: scale(1.1);
@@ -67,7 +67,7 @@
     }
   }
 
-  @include mq('1050px') {
+  @include mq('1150px') {
     width: 30%;
   }
   @include mq('600px') {
