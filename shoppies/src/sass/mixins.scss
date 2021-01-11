@@ -3,3 +3,9 @@
     @content;
   }
 }
+
+@mixin mq2($to) {
+  @media (min-width: $to) {
+    @content;
+  }
+}

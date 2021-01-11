@@ -11,6 +11,10 @@
     width: 70%;
   }
 
+  @include mq('600px') {
+    padding: 1% 0;
+  }
+
   .movies-and-nominations_container {
     display: flex;
     flex-direction: column;

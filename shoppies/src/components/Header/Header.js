@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../assets/shoppify.png';
 import { useDarkMode } from '../../hooks/useDarkMode';
 
-const Header = () => {
+const Header = ({ handleOpen }) => {
     const [darkMode, setDarkMode] = useDarkMode('darkMode', false);
 
     const toggleMode = e => {
@@ -20,6 +20,12 @@ const Header = () => {
                     onClick={toggleMode}
                     className={darkMode ? 'toggle toggled' : 'toggle'}
                 ></div>
+
+            </div>
+            <div
+                className='nominations-icon'
+                onClick={handleOpen}
+            ><i class="fas fa-trophy"></i>
             </div>
         </nav>
     );
