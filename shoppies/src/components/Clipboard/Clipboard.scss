@@ -1,0 +1,43 @@
+@import '../../sass/variables.scss';
+@import '../../sass/variables.scss';
+
+.clipboard {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 4% 3%;
+  border-radius: 3px;
+  background-color: $shoppify-green;
+
+  &_icon {
+    i {
+      font-size: 25px;
+    }
+  }
+  &_info {
+    padding: 1% 0;
+    width: 80%;
+    text-align: center;
+  }
+  &_btn {
+    button {
+      font-size: 16px;
+      border: none;
+      outline: none;
+      background-color: transparent;
+    }
+  }
+}
+.dark-mode {
+  .clipboard {
+    background-color: $generic-bg;
+  }
+  i {
+    color: $shoppify-green;
+  }
+  button {
+    color: $shoppify-green;
+  }
+}

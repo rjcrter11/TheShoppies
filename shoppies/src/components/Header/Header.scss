@@ -7,6 +7,30 @@
   background-color: $generic-bg;
   display: flex;
   justify-content: space-between;
+  position: relative;
+
+  &_clipboard-container {
+    width: 25%;
+    position: absolute;
+    top: 0;
+    right: 2%;
+
+    @include mq('1000px') {
+      width: 32%;
+    }
+    @include mq('750px') {
+      width: 37%;
+    }
+    @include mq('600px') {
+      width: 40%;
+    }
+    @include mq('550px') {
+      width: 50%;
+    }
+    @include mq('500px') {
+      width: 60%;
+    }
+  }
 
   &_logo-container {
     display: flex;
