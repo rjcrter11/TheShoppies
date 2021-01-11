@@ -1,9 +1,12 @@
 @import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
 
 .navbar {
   padding: 1% 1%;
   border: $generic-border;
   background-color: $generic-bg;
+  display: flex;
+  justify-content: space-between;
 
   &_logo-container {
     display: flex;
@@ -17,7 +20,54 @@
     h1 {
       font-size: 40px;
       font-weight: bold;
-      color: white;
+      color: rgb(245, 245, 245);
     }
+  }
+
+  .nominations-icon {
+    align-self: flex-end;
+    padding: 1% 1% 0 1%;
+    i {
+      font-size: 24px;
+      color: $darkMode-font;
+    }
+
+    @include mq2('900px') {
+      display: none;
+    }
+  }
+
+  .dark-mode__toggle {
+    background: rgb(245, 245, 245);
+    border-radius: 50px;
+    border: 1px solid black;
+    height: 20px;
+    position: relative;
+    width: 40px;
+    align-self: flex-end;
+
+    .toggle {
+      background: $shoppify-green;
+      border-radius: 50px;
+      height: 20px;
+      left: 0;
+      position: absolute;
+      transition: 0.2s;
+      width: 20px;
+    }
+
+    .toggled {
+      left: 18px;
+    }
+  }
+}
+
+.dark-mode {
+  color: #fff;
+  background-color: $darkMode-background;
+
+  .navbar {
+    background-color: rgb(26, 26, 26);
+    background-color: darken($shoppify-green, 12%);
   }
 }

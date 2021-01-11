@@ -1,4 +1,5 @@
 @import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
 .card {
   border: $generic-border;
   box-shadow: $generic-box-shadow;
@@ -12,6 +13,10 @@
   img {
     width: 100%;
     height: 200px;
+
+    @include mq('600px') {
+      height: 250px;
+    }
   }
 
   &_body {
@@ -21,12 +26,12 @@
     height: 95px;
 
     &_info {
-      padding: 1% 0 0 3%;
+      padding: 1% 0 1% 3%;
       margin-top: 2.5%;
 
       p {
         margin-bottom: 5px;
-        font-weight: 600;
+        font-weight: 500;
         color: rgb(65, 65, 65);
       }
       span {
@@ -58,6 +63,32 @@
       &:disabled {
         background-color: $small-text;
         color: white;
+      }
+    }
+  }
+
+  @include mq('1050px') {
+    width: 30%;
+  }
+  @include mq('600px') {
+    width: 80%;
+    margin: 1% auto;
+  }
+}
+
+.dark-mode {
+  .card {
+    button {
+      background-color: $shoppify-green !important;
+      color: black;
+
+      &:disabled {
+        background-color: lighten($shoppify-green, 20%) !important;
+      }
+
+      &:hover {
+        background-color: darken($shoppify-green, 10%) !important;
+        color: $darkMode-font;
       }
     }
   }

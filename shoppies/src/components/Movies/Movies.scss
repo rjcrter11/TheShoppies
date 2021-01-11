@@ -1,4 +1,5 @@
 @import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
 
 .movie-list-container {
   border: $generic-border;
@@ -6,7 +7,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 75vh;
+  height: 85vh;
+
+  @include mq('600px') {
+    width: 100%;
+  }
 
   h3 {
     align-self: flex-start;
@@ -26,20 +31,25 @@
       margin-left: 6%;
       color: $generic-bg;
       font-weight: bold;
-      width: 40%;
+      width: 50%;
+
+      @include mq('600px') {
+        width: 60%;
+      }
     }
     .movie-list-container_btns {
       display: flex;
       justify-content: space-between;
-      width: 12%;
+      width: 25%;
       margin-right: 6%;
       padding-top: 10px;
 
       button {
         border: none;
-        background-color: white;
+        background-color: transparent;
         font-size: 24px;
         color: $generic-bg;
+        cursor: pointer;
 
         &:focus {
           outline: none;
@@ -63,5 +73,41 @@
     justify-content: center;
     padding: 3% 0 0 0;
     width: 100%;
+
+    @include mq('1050px') {
+      justify-content: space-between;
+    }
+  }
+
+  @include mq('1050px') {
+    height: 155vh;
+  }
+
+  @include mq('900px') {
+    width: 100%;
+  }
+  @include mq('600px') {
+    height: fit-content;
+  }
+}
+
+.dark-mode {
+  .movie-list-container {
+    .movie-list-container_btns {
+      button {
+        i {
+          color: $shoppify-green;
+
+          &:hover {
+            color: $darkMode-font;
+          }
+        }
+        &:disabled {
+          i {
+            color: lighten($shoppify-green, 25%);
+          }
+        }
+      }
+    }
   }
 }

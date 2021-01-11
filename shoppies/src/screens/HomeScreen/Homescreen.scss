@@ -1,12 +1,18 @@
 @import '../../sass/variables.scss';
+@import '../../sass/mixins.scss';
+
 .movies-and-nominations {
   display: flex;
   justify-content: space-evenly;
-  padding: 3% 3%;
+  padding: 1% 3%;
   margin: 0 auto;
 
   &_movies {
     width: 70%;
+  }
+
+  @include mq('600px') {
+    padding: 1% 0;
   }
 
   .movies-and-nominations_container {
@@ -27,5 +33,27 @@
       width: 88%;
       box-shadow: $generic-box-shadow;
     }
+
+    @include mq('900px') {
+      display: none;
+    }
+  }
+
+  @include mq('900px') {
+    padding: 1% 0;
+  }
+}
+
+.dark-mode {
+  h2 {
+    color: $darkMode-font;
+  }
+  .movies-and-nominations {
+    .movies-and-nominations_movies {
+      border: $shoppify-green;
+    }
+  }
+  .movies-and-nominations_nominations {
+    border: $generic-border;
   }
 }

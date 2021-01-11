@@ -2,12 +2,14 @@ import React from 'react';
 
 import MovieCard from '../MovieCard/MovieCard';
 import Spinner from '../../components/Spinner/Spinner';
+import ErrorDisplay from '../ErrorDisplay/ErrorDisplay';
 
-const Movies = ({ movieList, searchInput, currentPage, fetchMovies, isLoading, totalResults }) => (
+const Movies = ({ movieList, searchInput, currentPage, fetchMovies, isLoading, totalResults, error }) => (
     <div className='movie-list-container'  >
         {searchInput.length > 0 ? (
             <div className='movie-list-container_results' >
                 <h2>RESULTS FOR "{searchInput.toUpperCase()}"</h2>
+
                 <div className='movie-list-container_btns'  >
                     <button
                         disabled={currentPage === 1}
@@ -24,10 +26,11 @@ const Movies = ({ movieList, searchInput, currentPage, fetchMovies, isLoading, t
         ) : <h3>Pick up to 5 movies to nominate!</h3>}
         <div className="movie-list" >
             {isLoading && (<Spinner />)}
+            {error && movieList?.length === undefined && searchInput.length !== 0 && (<ErrorDisplay searchInput={searchInput} />)}
             {movieList && movieList.map(mov => (
                 <MovieCard key={mov.imdbID} movie={mov} />
             ))}
         </div>
     </div>
-)
-export default Movies
+);
+export default Movies;

@@ -9,7 +9,6 @@
   border: $generic-border;
   box-shadow: $generic-box-shadow;
   background-color: $shoppify-green;
-  position: sticky;
   top: 0;
 
   &_icon {
@@ -29,6 +28,19 @@
     }
     p {
       color: darken($small-text, 20%);
+    }
+  }
+}
+
+.dark-mode {
+  .banner {
+    background-color: $darkMode-font !important;
+    color: $darkMode-background !important;
+
+    &_icon {
+      i {
+        color: $shoppify-green;
+      }
     }
   }
 }

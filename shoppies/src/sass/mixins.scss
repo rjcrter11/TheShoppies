@@ -1,0 +1,11 @@
+@mixin mq($from) {
+  @media (max-width: $from) {
+    @content;
+  }
+}
+
+@mixin mq2($to) {
+  @media (min-width: $to) {
+    @content;
+  }
+}

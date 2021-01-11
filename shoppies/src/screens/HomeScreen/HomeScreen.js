@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useContext } from 'react';
 
 import axios from 'axios';
 
@@ -8,7 +8,6 @@ import Nominations from '../../components/Nominations/Nominations';
 import Banner from '../../components/Banner/Banner';
 
 import { NominationsContext } from '../../contexts/NominationsContext';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 const movieUrl = "http://www.omdbapi.com";
 const API_KEY = "79526c77";
@@ -18,14 +17,14 @@ const HomeScreen = () => {
     // HOOKS
     const [movieList, setMovieList] = useState([]);
     const [searchInput, setSearchInput] = useState("");
-    const [nominations, setNominations] = useLocalStorage("nominations", []);
     const [currentPage, setCurrentPage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [totalResults, setTotalResults] = useState(null)
-    // console.log('MOVIE LIST: ', movieList);
+    const [totalResults, setTotalResults] = useState(null);
 
-    console.log('TOTAL RESULTS: ', totalResults);
+    const { nominations } = useContext(NominationsContext);
+
+
     // SEARCH BAR 
     const handleSearchChange = e => {
         setSearchInput(e.target.value)
@@ -35,33 +34,24 @@ const HomeScreen = () => {
         setSearchInput('')
     }
 
-    // NOMINATIONS
-    const handleNominate = movie => {
-        setNominations([...nominations, movie])
-    }
-    const handleRemoveNomination = id => {
-        setNominations(nominations.filter(nom => nom.imdbID !== id))
-    }
-
     // FETCH MOVIES
     const fetchMovies = useCallback((title, page) => {
         setIsLoading(true)
         axios.get(`${movieUrl}/?apikey=${API_KEY}&type=movie&s=${title}&page=${page}`)
             .then(res => {
 
-                if (res.Response === 'False') {
-                    setError(res.Error)
+                if (res.data.Response !== 'True') {
+                    setError(res.data.Error)
                 } else {
                     setMovieList(res.data.Search);
                     const result = res.data;
-                    console.log(result);
                     setTotalResults(result.totalResults)
                     result.page = currentPage === null ? setCurrentPage(1) : setCurrentPage(page)
                 }
                 setIsLoading(false)
             })
-            .catch(({ message }) => {
-                setError(message);
+            .catch(err => {
+                console.log(err);
                 setIsLoading(false);
             });
     }, [currentPage]);
@@ -82,33 +72,35 @@ const HomeScreen = () => {
 
     return (
         <div className='main-container' >
-            { error && (<p>{error}</p>)}
-            { nominations.length >= 5 && (<Banner />)}
+            { nominations.length >= 5 && (
+                <Banner />
+            )}
             <SearchBar
                 handleSearchChange={handleSearchChange}
                 deleteSearchText={deleteSearchText}
                 searchInput={searchInput}
             />
             <div className='movies-and-nominations' >
-                <NominationsContext.Provider value={{ nominations, handleNominate, handleRemoveNomination }}>
-                    <div className='movies-and-nominations_movies'>
-                        <Movies
-                            movieList={movieList}
-                            fetchMovies={fetchMovies}
-                            searchInput={searchInput}
-                            currentPage={currentPage}
-                            isLoading={isLoading}
-                            totalResults={totalResults}
-                        />
-                    </div>
 
-                    <div className='movies-and-nominations_container' >
-                        <h2>Your Nominations ({nominations.length} of 5) </h2>
-                        <div className="movies-and-nominations_nominations">
-                            <Nominations />
-                        </div>
+                <div className='movies-and-nominations_movies'>
+                    <Movies
+                        movieList={movieList}
+                        fetchMovies={fetchMovies}
+                        searchInput={searchInput}
+                        currentPage={currentPage}
+                        isLoading={isLoading}
+                        error={error}
+                        totalResults={totalResults}
+                    />
+                </div>
+
+                <div className='movies-and-nominations_container' >
+                    <h2>Your Nominations ({nominations.length} of 5) </h2>
+                    <div className="movies-and-nominations_nominations">
+                        <Nominations />
                     </div>
-                </NominationsContext.Provider>
+                </div>
+
             </div>
         </div>
     )
