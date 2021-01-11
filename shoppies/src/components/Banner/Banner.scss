@@ -31,3 +31,16 @@
     }
   }
 }
+
+.dark-mode {
+  .banner {
+    background-color: $darkMode-font !important;
+    color: $darkMode-background !important;
+
+    &_icon {
+      i {
+        color: $shoppify-green;
+      }
+    }
+  }
+}

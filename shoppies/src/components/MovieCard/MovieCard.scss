@@ -62,3 +62,21 @@
     }
   }
 }
+
+.dark-mode {
+  .card {
+    button {
+      background-color: $shoppify-green !important;
+      color: black;
+
+      &:disabled {
+        background-color: lighten($shoppify-green, 20%) !important;
+      }
+
+      &:hover {
+        background-color: darken($shoppify-green, 10%) !important;
+        color: $darkMode-font;
+      }
+    }
+  }
+}

@@ -1,3 +1,5 @@
+@import '../../sass/variables.scss';
+
 .error {
   width: 100%;
   background-color: rgb(245, 245, 245);
@@ -6,5 +8,15 @@
     text-align: center;
     width: 100%;
     color: black;
+  }
+}
+
+.dark-mode {
+  .error {
+    background-color: darken($generic-bg, 10%);
+
+    h3 {
+      color: $darkMode-font;
+    }
   }
 }

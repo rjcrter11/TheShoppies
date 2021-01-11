@@ -16,6 +16,7 @@
 
   &_info {
     padding: 1% 1%;
+    text-align: center;
 
     p {
       color: $small-text;
@@ -24,9 +25,13 @@
 
   button {
     border: none;
-    background-color: white;
+    background-color: transparent;
     cursor: pointer;
     padding: 2% 2%;
+
+    i {
+      font-size: 18px;
+    }
 
     &:focus {
       outline: none !important;
@@ -35,6 +40,30 @@
     &:hover {
       border: $generic-border;
       color: red;
+    }
+  }
+}
+
+.dark-mode {
+  .nomination-card {
+    border: 1px solid $shoppify-green;
+    p {
+      color: $darkMode-font;
+    }
+
+    button {
+      background-color: transparent;
+
+      &:hover {
+        border: none !important;
+      }
+      i {
+        color: $darkMode-font;
+
+        &:hover {
+          color: red;
+        }
+      }
     }
   }
 }

@@ -37,9 +37,10 @@
 
       button {
         border: none;
-        background-color: white;
+        background-color: transparent;
         font-size: 24px;
         color: $generic-bg;
+        cursor: pointer;
 
         &:focus {
           outline: none;
@@ -63,5 +64,26 @@
     justify-content: center;
     padding: 3% 0 0 0;
     width: 100%;
+  }
+}
+
+.dark-mode {
+  .movie-list-container {
+    .movie-list-container_btns {
+      button {
+        i {
+          color: $shoppify-green;
+
+          &:hover {
+            color: $darkMode-font;
+          }
+        }
+        &:disabled {
+          i {
+            color: lighten($shoppify-green, 25%);
+          }
+        }
+      }
+    }
   }
 }

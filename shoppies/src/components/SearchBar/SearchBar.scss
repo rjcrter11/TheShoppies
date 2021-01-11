@@ -12,7 +12,7 @@
 
     input {
       border: 1px solid #ddd;
-      background-color: white !important;
+      background-color: white;
       border-radius: 3px;
       height: 40px;
       padding-left: 10px;
@@ -30,7 +30,7 @@
       align-self: flex-end;
       position: absolute;
       bottom: 27px;
-      right: 19px;
+      right: 20px;
       border: none;
       background-color: white;
       cursor: pointer;
@@ -52,5 +52,15 @@
       margin-top: 6px;
       font-size: 13px;
     }
+  }
+}
+
+.dark-mode {
+  input {
+    background-color: $darkMode-subBackgrounds !important;
+    color: $darkMode-font;
+  }
+  button {
+    background-color: transparent !important;
   }
 }
