@@ -1,7 +1,6 @@
 # TheShoppies
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e52b59851b8d46bdaa38c0e30685e37f)](https://app.codacy.com/gh/rjcrter11/TheShoppies?utm_source=github.com&utm_medium=referral&utm_content=rjcrter11/TheShoppies&utm_campaign=Badge_Grade)
-
 ![GitHub deployments](https://img.shields.io/github/deployments/rjcrter11/TheShoppies/production?label=Vercel&logo=vercel&style=flat-square)
 ![License](https://img.shields.io/github/license/rjcrter11/TheShoppies?style=flat-square)
 
