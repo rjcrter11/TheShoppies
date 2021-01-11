@@ -9,7 +9,7 @@ import Banner from '../../components/Banner/Banner';
 
 import { NominationsContext } from '../../contexts/NominationsContext';
 
-const movieUrl = "http://www.omdbapi.com";
+const movieUrl = "https://www.omdbapi.com";
 const API_KEY = "79526c77";
 
 const HomeScreen = () => {
