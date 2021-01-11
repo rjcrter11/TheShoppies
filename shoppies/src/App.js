@@ -14,7 +14,7 @@ function App() {
   // HOOKS
   const [nominations, setNominations] = useLocalStorage("nominations", []);
   const [open, setOpen] = useState(false);
-  const [_, setCopyToClip] = useState(null);
+  const [copyToClip, setCopyToClip] = useState(null);
   const [showCopy, setShowCopy] = useState(false);
 
   // NOMINATIONS
@@ -51,7 +51,7 @@ function App() {
   return (
     <div>
       <NominationsContext.Provider value={{ nominations, handleNominate, handleRemoveNomination, copyToClipBoard }}>
-        <Header handleOpen={handleOpen} closeClipboard={closeClipboard} showCopy={showCopy} />
+        <Header handleOpen={handleOpen} closeClipboard={closeClipboard} showCopy={showCopy} copyToClip={copyToClip} />
 
         {open ? (
           <div
