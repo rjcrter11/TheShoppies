@@ -9,10 +9,6 @@
   align-items: flex-start;
   height: 85vh;
 
-  @include mq('600px') {
-    width: 100%;
-  }
-
   h3 {
     align-self: flex-start;
     justify-self: center;
@@ -45,7 +41,7 @@
       padding-top: 10px;
 
       @include mq('500px') {
-        width: 15%;
+        width: 25%;
       }
 
       button {
@@ -92,6 +88,8 @@
   }
   @include mq('600px') {
     height: fit-content;
+    align-items: center;
+    width: 100%;
   }
 }
 
