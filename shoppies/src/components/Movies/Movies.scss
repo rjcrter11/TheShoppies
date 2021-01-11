@@ -40,9 +40,13 @@
     .movie-list-container_btns {
       display: flex;
       justify-content: space-between;
-      width: 25%;
+      width: 20%;
       margin-right: 6%;
       padding-top: 10px;
+
+      @include mq('500px') {
+        width: 15%;
+      }
 
       button {
         border: none;

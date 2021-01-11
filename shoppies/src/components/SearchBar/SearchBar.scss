@@ -38,6 +38,10 @@
       outline: none;
       border: none;
 
+      @include mq('400px') {
+        bottom: 40px;
+      }
+
       &:hover {
         background-color: rgb(241, 240, 240);
         border-radius: 50%;
@@ -55,7 +59,7 @@
     }
 
     @include mq('500px') {
-      width: 90%;
+      width: 95%;
     }
   }
 }
