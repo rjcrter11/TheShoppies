@@ -25,7 +25,7 @@ const Header = ({ handleOpen }) => {
             <div
                 className='nominations-icon'
                 onClick={handleOpen}
-            ><i class="fas fa-trophy"></i>
+            ><i className="fas fa-trophy"></i>
             </div>
         </nav>
     );
