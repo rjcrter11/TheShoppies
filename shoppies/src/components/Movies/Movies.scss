@@ -9,10 +9,6 @@
   align-items: flex-start;
   height: 85vh;
 
-  @include mq('600px') {
-    width: 100%;
-  }
-
   h3 {
     align-self: flex-start;
     justify-self: center;
@@ -40,9 +36,13 @@
     .movie-list-container_btns {
       display: flex;
       justify-content: space-between;
-      width: 25%;
+      width: 20%;
       margin-right: 6%;
       padding-top: 10px;
+
+      @include mq('500px') {
+        width: 25%;
+      }
 
       button {
         border: none;
@@ -88,6 +88,8 @@
   }
   @include mq('600px') {
     height: fit-content;
+    align-items: center;
+    width: 100%;
   }
 }
 

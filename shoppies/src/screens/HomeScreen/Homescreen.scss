@@ -39,8 +39,18 @@
     }
   }
 
+  .movies-and-nominations_movies {
+    @include mq('450px') {
+      width: 90%;
+    }
+  }
+
   @include mq('900px') {
     padding: 1% 0;
+  }
+  @include mq('450px') {
+    padding: 1% 0;
+    align-items: center;
   }
 }
 
