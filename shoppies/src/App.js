@@ -13,7 +13,9 @@ function App() {
 
   // HOOKS
   const [nominations, setNominations] = useLocalStorage("nominations", []);
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [_, setCopyToClip] = useState(null);
+  const [showCopy, setShowCopy] = useState(false);
 
   // NOMINATIONS
   const handleNominate = movie => {
@@ -25,12 +27,31 @@ function App() {
 
   const handleOpen = () => {
     setOpen(!open)
+  };
+
+  // COPY TO CLIPBOARD
+  const copyToClipBoard = (id) => {
+    const copyText = `https://www.imdb.com/title/${id}`;
+    navigator.clipboard.writeText(copyText).then(
+      () => {
+        setCopyToClip(copyText)
+        setShowCopy(true)
+      },
+      err => {
+        console.log(err);
+      }
+    )
+  }
+
+  const closeClipboard = () => {
+    setShowCopy(false);
+    setCopyToClip(null)
   }
 
   return (
     <div>
-      <NominationsContext.Provider value={{ nominations, handleNominate, handleRemoveNomination }}>
-        <Header handleOpen={handleOpen} />
+      <NominationsContext.Provider value={{ nominations, handleNominate, handleRemoveNomination, copyToClipBoard }}>
+        <Header handleOpen={handleOpen} closeClipboard={closeClipboard} showCopy={showCopy} />
 
         {open ? (
           <div
