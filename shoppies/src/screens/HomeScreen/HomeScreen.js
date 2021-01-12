@@ -58,7 +58,7 @@ const HomeScreen = () => {
 
     // RERENDER ON SEARCH AND CHANGE OF PAGE
     useEffect(() => {
-        setMovieList(fetchMovies(searchInput, currentPage));
+        setMovieList(fetchMovies(searchInput.trimRight(), currentPage));
     }, [searchInput, fetchMovies, currentPage]);
 
 
