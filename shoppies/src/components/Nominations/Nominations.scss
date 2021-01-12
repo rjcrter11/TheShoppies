@@ -5,25 +5,25 @@
   width: 100%;
   height: 60vh;
 
-  .noms-enter {
+  .noms-enter,
+  .noms-appear {
     opacity: 0.2;
+    transform: translateY(100px);
   }
-  .noms-appear,
   .noms-appear-active,
   .noms-enter-active {
-    margin-top: 100px;
     opacity: 1;
-    transition: all 700ms ease-in;
-    transform: translateY(-50px);
+    transition: all 1500ms ease;
+    transform: translateY(0px);
   }
   .noms-leave,
   .noms-exit {
     opacity: 1;
+    transform: translateY(100px);
+    transition: all 1500ms ease;
   }
   .noms-leave-active,
   .noms-exit-active {
     opacity: 0;
-    transform: scale(0.7);
-    transition: opacity 900ms ease-in;
   }
 }

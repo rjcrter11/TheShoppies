@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from '../../assets/shoppify.png';
 
+import { CSSTransition } from 'react-transition-group';
+
 import { useDarkMode } from '../../hooks/useDarkMode';
 
 import Clipboard from '../Clipboard/Clipboard';
@@ -19,11 +21,18 @@ const Header = ({ handleOpen, closeClipboard, showCopy }) => {
                 <img src={logo} alt='shoppify logo' />
                 <h1>The Shoppies</h1>
             </div>
-            { showCopy && (
-                <div className='navbar_clipboard-container'>
+            <div className='navbar_clipboard-container'>
+                <CSSTransition
+                    in={showCopy}
+                    mountOnEnter
+                    unmountOnExit
+                    classNames='clip'
+                    appear={true}
+                    timeout={1500}
+                >
                     <Clipboard closeClipboard={closeClipboard} />
-                </div>
-            )}
+                </CSSTransition>
+            </div>
             <div className='dark-mode__toggle'>
                 <div
                     onClick={toggleMode}

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-
 import Header from './components/Header/Header';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
+import Nominations from './components/Nominations/Nominations';
 
 import { NominationsContext } from './contexts/NominationsContext';
 import { useLocalStorage } from './hooks/useLocalStorage';
-import Nominations from './components/Nominations/Nominations';
 
 
 function App() {
@@ -20,38 +19,50 @@ function App() {
   // NOMINATIONS
   const handleNominate = movie => {
     setNominations([...nominations, movie])
-  }
+  };
   const handleRemoveNomination = id => {
     setNominations(nominations.filter(nom => nom.imdbID !== id))
-  }
+  };
 
   const handleOpen = () => {
     setOpen(!open)
   };
 
-  // COPY TO CLIPBOARD
+  // CLIPBOARD
   const copyToClipBoard = (id) => {
     const copyText = `https://www.imdb.com/title/${id}`;
-    navigator.clipboard.writeText(copyText).then(
-      () => {
-        setCopyToClip(copyText)
-        setShowCopy(true)
-      },
-      err => {
-        console.log(err);
-      }
-    )
-  }
+    navigator.clipboard.writeText(copyText);
+    setCopyToClip(copyText)
+    setShowCopy(true)
+  };
 
   const closeClipboard = () => {
     setShowCopy(false);
-    setCopyToClip(null)
-  }
+    setCopyToClip(null);
+  };
+
+  // setTimeout(() => {
+  //   setShowCopy(false);
+  //   setCopyToClip(null);
+  // }, 8000)
 
   return (
     <div>
-      <NominationsContext.Provider value={{ nominations, handleNominate, handleRemoveNomination, copyToClipBoard }}>
-        <Header handleOpen={handleOpen} closeClipboard={closeClipboard} showCopy={showCopy} copyToClip={copyToClip} />
+      <NominationsContext.Provider
+        value={{
+          nominations,
+          handleNominate,
+          handleRemoveNomination,
+          copyToClipBoard,
+          showCopy,
+          copyToClip
+        }}>
+
+        <Header
+          handleOpen={handleOpen}
+          closeClipboard={closeClipboard}
+          showCopy={showCopy}
+        />
 
         {open ? (
           <div

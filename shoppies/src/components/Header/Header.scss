@@ -30,6 +30,31 @@
     @include mq('500px') {
       width: 60%;
     }
+
+    .clip-enter,
+    .clip-appear {
+      opacity: 0.5;
+      transform: translate(-100%);
+    }
+
+    .clip-appear-active,
+    .clip-enter-active {
+      opacity: 1;
+      transition: all 1500ms ease;
+      transform: translate(0px);
+    }
+
+    .clip-exit,
+    .clip-leave {
+      opacity: 1;
+    }
+
+    .clip-leave-active,
+    .clip-exit-active {
+      opacity: 0;
+      transform: translateY(100px);
+      transition: opacity 1500ms, transform 1500ms;
+    }
   }
 
   &_logo-container {
