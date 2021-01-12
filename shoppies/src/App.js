@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { CSSTransition } from 'react-transition-group';
+
 import Header from './components/Header/Header';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import Nominations from './components/Nominations/Nominations';
@@ -41,10 +43,10 @@ function App() {
     setCopyToClip(null);
   };
 
-  // setTimeout(() => {
-  //   setShowCopy(false);
-  //   setCopyToClip(null);
-  // }, 8000)
+  setTimeout(() => {
+    setShowCopy(false);
+    setCopyToClip(null);
+  }, 10000)
 
   return (
     <div>
@@ -57,21 +59,34 @@ function App() {
           showCopy,
           copyToClip
         }}>
-
         <Header
           handleOpen={handleOpen}
           closeClipboard={closeClipboard}
           showCopy={showCopy}
         />
-
-        {open ? (
-          <div
-            style={{ width: '75%', margin: '2% auto' }}>
-            <Nominations open={open} /></div>
-        ) : (
-            <HomeScreen />
-          )}
-
+        <CSSTransition
+          in={!open}
+          mountOnEnter
+          unmountOnExit
+          classNames='home'
+          appear={true}
+          timeout={1000}
+        >
+          <HomeScreen />
+        </CSSTransition>
+        <CSSTransition
+          in={open}
+          mountOnEnter
+          unmountOnExit
+          classNames='trophy'
+          appear={true}
+          timeout={2000}
+        >
+          <div className='nominations-app'>
+            <h2>Your Nominations ({nominations.length} of 5)</h2>
+            <Nominations open={open} />
+          </div>
+        </CSSTransition>
       </NominationsContext.Provider>
     </div>
   );
