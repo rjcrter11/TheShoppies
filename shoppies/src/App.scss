@@ -1,0 +1,59 @@
+.nominations-app {
+  width: 70%;
+  margin: 2% auto;
+
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.trophy-enter,
+.trophy-appear {
+  opacity: 0.5;
+  transform: translate(-100%);
+}
+
+.trophy-appear-active,
+.trophy-enter-active {
+  opacity: 1;
+  transition: all 1500ms ease;
+  transform: translate(0px);
+}
+
+.trophy-exit,
+.trophy-leave {
+  opacity: 1;
+}
+
+.trophy-leave-active,
+.trophy-exit-active {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 1500ms, transform 1500ms;
+}
+.home-enter,
+.home-appear {
+  opacity: 0.5;
+  transform: translate(-100%);
+}
+
+.home-appear-active,
+.home-enter-active {
+  opacity: 1;
+  transition: all 1500ms ease;
+  transform: translate(0px);
+}
+
+.home-exit,
+.home-leave {
+  opacity: 1;
+}
+
+.home-leave-active,
+.home-exit-active {
+  opacity: 0;
+  transform: translate(100px);
+  transition: opacity 1000ms, transform 1500ms;
+}

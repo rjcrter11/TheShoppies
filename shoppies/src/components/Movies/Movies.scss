@@ -6,8 +6,8 @@
   box-shadow: $generic-box-shadow;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  height: 140vh;
+  align-items: flex-end;
+  height: 115vh;
 
   h3 {
     align-self: flex-start;
@@ -80,8 +80,11 @@
     }
   }
 
+  @include mq('1200px') {
+    height: 165vh;
+  }
   @include mq('1050px') {
-    height: 155vh;
+    height: 162vh;
   }
 
   @include mq('900px') {
