@@ -2,12 +2,10 @@
 @import '../../sass/mixins.scss';
 
 .movie-list-container {
-  border: $generic-border;
-  box-shadow: $generic-box-shadow;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  height: 115vh;
+  height: 125vh;
 
   h3 {
     align-self: flex-start;

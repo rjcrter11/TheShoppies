@@ -10,6 +10,7 @@
   box-shadow: $generic-box-shadow;
   background-color: $shoppify-green;
   top: 0;
+  position: sticky;
 
   &_icon {
     padding: 1% 1%;
