@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Banner = ({ length, setProp }) => {
+const Banner = () => {
 
     return (
         <div className='banner' >
